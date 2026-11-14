@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAME ZONE 3D</title>
+<style>
+:root{--bg:#090d1c;--panel:#141e3b;--cyan:#43eaff;--purple:#9a75ff;--pink:#ff579e;--ink:#f5f7ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#35447e 0,#090d1c 58%);color:var(--ink);font-family:system-ui,Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;border-bottom:1px solid #ffffff20;background:#080c1bcc;position:sticky;top:0;z-index:3;backdrop-filter:blur(12px)}
+.logo{font-size:25px;font-weight:1000;letter-spacing:1px}.logo span{color:var(--cyan);text-shadow:0 0 18px #43eaff88}
+.tag{border:1px solid #43eaff66;color:#b8f8ff;padding:7px 12px;border-radius:30px;font-size:12px;font-weight:800}
+main{max-width:1150px;margin:auto;padding:28px 5vw 60px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+h1{font-size:clamp(38px,7vw,70px);line-height:.98;margin:10px 0 15px}.grad{background:linear-gradient(90deg,var(--cyan),#b18cff,var(--pink));background-clip:text;color:transparent}
+p{color:#b9c5e1;line-height:1.6}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:11px;padding:11px 16px;font-weight:900;cursor:pointer;color:#07101c;background:linear-gradient(100deg,var(--cyan),#9ba2ff)}
+button.alt{background:#263253;color:#eef2ff;border:1px solid #ffffff24}
+.card{background:linear-gradient(145deg,#1b294fdd,#10172ddd);border:1px solid #ffffff20;border-radius:20px;padding:18px;box-shadow:0 18px 50px #0005}
+.art{height:210px;border-radius:15px;position:relative;overflow:hidden;background:linear-gradient(130deg,#243b72,#151b39 58%,#54296d)}
+.art:before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:#43eaff33;filter:blur(25px);left:10%;top:5%}
+.avatar{position:absolute;bottom:18px;left:40%;width:64px;height:90px;background:#4d7ee8;border-radius:8px 8px 4px 4px;box-shadow:inset 0 28px #e7a96d}
+.avatar:before{content:"";position:absolute;top:-42px;left:4px;width:56px;height:47px;border-radius:9px;background:#e7a96d}
+.avatar:after{content:"";position:absolute;top:-23px;left:17px;width:6px;height:6px;background:#17203d;box-shadow:22px 0 #17203d}
+.foe{position:absolute;bottom:20px;right:17%;width:50px;height:74px;border-radius:7px;background:#ff6796;box-shadow:inset 0 24px #d99570}
+.foe:before{content:"";position:absolute;top:-33px;width:50px;height:36px;background:#d99570;border-radius:8px}
+.artlabel{position:absolute;top:14px;left:15px;font-size:11px;letter-spacing:2px;font-weight:900;color:#c9faff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.stat{background:#0b132a;border-radius:11px;padding:10px}.stat b{display:block;color:var(--cyan);font-size:21px}.stat small{color:#9daaca}
+.section{margin:34px 0 14px;display:flex;justify-content:space-between;align-items:end;gap:12px}.section h2{margin:0;font-size:24px}.muted{color:#9eabc9;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.tile{padding:14px;border-radius:15px;background:#141e3b;border:1px solid #ffffff18}.tile .emoji{font-size:30px}.tile h3{margin:6px 0 3px}.tile p{font-size:12px;margin:0}
+.play{margin-top:18px}.gamehead{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.gamehead h2{margin:0}.canvasbox{height:390px;border:1px solid #ffffff2b;border-radius:16px;overflow:hidden;background:#080d1b;position:relative}canvas{width:100%;height:100%;display:block;touch-action:none}
+.hud{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none;font-size:13px;font-weight:900;text-shadow:0 2px 5px #000}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px;color:#aebbd8;font-size:13px}
+.note{font-size:12px;color:#9eabc9;margin-top:12px;line-height:1.5}.status{color:#9af6ff;font-weight:800}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.canvasbox{height:330px}.stats small{font-size:10px}}
+</style></head>
+<body>
+<header><div class="logo">🎮 GAME <span>ZONE 3D</span></div><div class="tag">FREE PLAY • NO ADS</div></header>
+<main>
+<section class="hero">
+<div><div class="tag">YOUR NEXT GAME WORLD</div><h1>PLAY BIG.<br><span class="grad">LEVEL UP.</span></h1>
+<p>A blocky, colorful arcade world with bot battles, a multiplayer-ready lobby concept, 1,000 main levels and 100 bonus levels to unlock. Start with the playable battle demo below!</p>
+<div class="actions"><button onclick="document.getElementById('arena').scrollIntoView({behavior:'smooth'})">▶ PLAY BATTLE</button><button class="alt" onclick="alert('Multiplayer lobby preview: online matchmaking needs a game server before real players can join.')">🌐 MULTIPLAYER LOBBY</button></div></div>
+<div class="card"><div class="art"><div class="artlabel">BLOCK ARENA • DEMO</div><div class="avatar"></div><div class="foe"></div></div>
+<div class="stats"><div class="stat"><b>1,000</b><small>Main levels planned</small></div><div class="stat"><b>100</b><small>Bonus levels</small></div><div class="stat"><b>0</b><small>Advertisements</small></div></div></div>
+</section>
+<div class="section"><h2>Explore the game zone</h2><span class="muted">More worlds coming soon</span></div>
+<section class="grid">
+<div class="tile"><div class="emoji">🔫</div><h3>Block Battle</h3><p>Take on computer-controlled rivals in the arena.</p></div>
+<div class="tile"><div class="emoji">🏎️</div><h3>Turbo Racers</h3><p>Race through wild tracks and chase records.</p></div>
+<div class="tile"><div class="emoji">🧗</div><h3>Obby Tower</h3><p>Jump, dodge and climb tricky obstacle courses.</p></div>
+<div class="tile"><div class="emoji">🧟</div><h3>Survival Quest</h3><p>Explore, collect and survive each round.</p></div>
+<div class="tile"><div class="emoji">🏝️</div><h3>Island Builder</h3><p>Build a colorful world of your own.</p></div>
+<div class="tile"><div class="emoji">⚽</div><h3>Super Soccer</h3><p>Score goals in fast arcade matches.</p></div>
+<div class="tile"><div class="emoji">🧩</div><h3>Puzzle Lab</h3><p>Solve clever puzzles to unlock rewards.</p></div>
+<div class="tile"><div class="emoji">🚀</div><h3>Space Run</h3><p>Dodge hazards in a cosmic speed run.</p></div>
+</section>
+<section class="play card" id="arena">
+<div class="gamehead"><div><h2>🔫 Block Battle: Arena</h2><div class="muted">A small playable prototype</div></div><div><span class="tag" id="level">LEVEL 1 / 1000</span></div></div>
+<div class="canvasbox"><canvas id="gameCanvas" width="900" height="520"></canvas><div class="hud"><span id="health">❤️ 100</span><span id="score">⭐ 0</span><span id="bots">BOTS 5</span></div></div>
+<div class="controls"><span>Move: WASD / arrow keys</span><span>Aim: mouse</span><span>Shoot: click / space</span><button class="alt" onclick="resetGame()">↻ Restart round</button><button onclick="nextLevel()">Next level →</button></div>
+<div class="note">This demo runs locally in your browser. The multiplayer button is a lobby preview, not live matchmaking yet: real online play with other people requires a hosted multiplayer server. The full 1,000 + 100 level campaign and the extra game modes are planned features, not all playable in this starter demo.</div>
+<div class="status" id="message">Defeat the bots to clear the round!</div>
+</section>
+</main>
+<script>
+const c=document.getElementById('gameCanvas'),ctx=c.getContext('2d');
+let keys={},mouse={x:450,y:260},player,bots,shots,score,level=1,health,ended=false,last=0;
+function resetGame(){player={x:450,y:260,r:17,speed:3.4,cool:0};bots=[];shots=[];score=0;health=100;ended=false;for(let i=0;i<5+Math.min(level,8);i++)spawnBot();document.getElementById('message').textContent='Defeat the bots to clear the round!';updateHud()}
+function spawnBot(){let edge=Math.floor(Math.random()*4),x=edge===0?30:edge===1?870:Math.random()*840+30,y=edge===2?30:edge===3?490:Math.random()*460+30;bots.push({x,y,r:16,hp:2,spd:0.65+Math.random()*.35})}
+function updateHud(){document.getElementById('health').textContent='❤️ '+health;document.getElementById('score').textContent='⭐ '+score;document.getElementById('bots').textContent='BOTS '+bots.length;document.getElementById('level').textContent='LEVEL '+level+' / 1000'}
+function shoot(){if(ended||player.cool>0)return;let a=Math.atan2(mouse.y-player.y,mouse.x-player.x);shots.push({x:player.x+Math.cos(a)*20,y:player.y+Math.sin(a)*20,vx:Math.cos(a)*8,vy:Math.sin(a)*8});player.cool=13}
+function update(){if(ended)return;let dx=(keys.ArrowRight||keys.d?1:0)-(keys.ArrowLeft||keys.a?1:0),dy=(keys.ArrowDown||keys.s?1:0)-(keys.ArrowUp||keys.w?1:0),len=Math.hypot(dx,dy)||1;player.x=Math.max(20,Math.min(880,player.x+dx/len*player.speed));player.y=Math.max(20,Math.min(500,player.y+dy/len*player.speed));if(player.cool>0)player.cool--;if(keys[' '])shoot();
+for(let b of bots){let a=Math.atan2(player.y-b.y,player.x-b.x);b.x+=Math.cos(a)*b.spd;b.y+=Math.sin(a)*b.spd;if(Math.hypot(player.x-b.x,player.y-b.y)<29){health-=.12;if(health<=0){health=0;ended=true;document.getElementById('message').textContent='💥 Round over! Restart and try again.'}}}
+for(let s of shots){s.x+=s.vx;s.y+=s.vy;for(let b of bots){if(b.hp>0&&Math.hypot(s.x-b.x,s.y-b.y)<b.r+5){b.hp=0;s.dead=true;score+=10;break}}}shots=shots.filter(s=>!s.dead&&s.x>0&&s.x<900&&s.y>0&&s.y<520);bots=bots.filter(b=>b.hp>0);if(bots.length===0&&!ended){ended=true;document.getElementById('message').textContent='🏆 Arena cleared! Press Next level to continue.'}updateHud()}
+function draw(){ctx.clearRect(0,0,900,520);ctx.fillStyle='#101a32';ctx.fillRect(0,0,900,520);ctx.strokeStyle='#24365e';ctx.lineWidth=1;for(let x=0;x<900;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,520);ctx.stroke()}for(let y=0;y<520;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(900,y);ctx.stroke()}
+ctx.fillStyle='#263b64';for(let [x,y,w,h] of [[90,85,90,35],[690,95,110,35],[160,390,120,35],[620,380,100,35],[410,160,75,45]])ctx.fillRect(x,y,w,h);
+for(let b of bots){ctx.fillStyle='#ff5f93';ctx.fillRect(b.x-13,b.y-2,26,22);ctx.fillStyle='#d99a73';ctx.fillRect(b.x-12,b.y-22,24,21);ctx.fillStyle='#18213c';ctx.fillRect(b.x-7,b.y-14,4,4);ctx.fillRect(b.x+4,b.y-14,4,4)}
+for(let s of shots){ctx.fillStyle='#ffe47a';ctx.beginPath();ctx.arc(s.x,s.y,5,0,7);ctx.fill()}
+let a=Math.atan2(mouse.y-player.y,mouse.x-player.x);ctx.save();ctx.translate(player.x,player.y);ctx.rotate(a);ctx.fillStyle='#46e5fa';ctx.fillRect(-13,-12,26,26);ctx.fillStyle='#f0b178';ctx.fillRect(-11,-29,22,19);ctx.fillStyle='#26314f';ctx.fillRect(2,-22,4,4);ctx.fillRect(20,-4,19,8);ctx.restore();
+if(ended){ctx.fillStyle='#050914aa';ctx.fillRect(0,0,900,520);ctx.fillStyle='white';ctx.font='bold 32px system-ui';ctx.textAlign='center';ctx.fillText(bots.length===0?'ROUND CLEARED':'ROUND OVER',450,260)}}
+function loop(t){let dt=Math.min(32,t-last);last=t;update();draw();requestAnimationFrame(loop)}
+function coords(e){let r=c.getBoundingClientRect();mouse.x=(e.clientX-r.left)*900/r.width;mouse.y=(e.clientY-r.top)*520/r.height}
+window.addEventListener('keydown',e=>{keys[e.key]=true;if(e.key===' ')e.preventDefault()});window.addEventListener('keyup',e=>keys[e.key]=false);c.addEventListener('pointermove',coords);c.addEventListener('pointerdown',e=>{coords(e);shoot()});
+function nextLevel(){if(!ended||bots.length!==0){document.getElementById('message').textContent='Clear all bots first to unlock the next level.';return}if(level<1000){level++;resetGame()}else{document.getElementById('message').textContent='🎉 Main campaign complete! Bonus levels unlocked.';}}
+resetGame();requestAnimationFrame(loop);
+</script></body></html>
